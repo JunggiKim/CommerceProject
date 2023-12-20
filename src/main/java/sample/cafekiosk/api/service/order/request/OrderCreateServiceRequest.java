@@ -1,13 +1,12 @@
 package sample.cafekiosk.api.service.order.request;
 
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
+import javax.validation.constraints.NotEmpty;
 
 @Getter
 @NoArgsConstructor

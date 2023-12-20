@@ -1,7 +1,6 @@
 package sample.cafekiosk.api.controller.order;
 
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +11,8 @@ import sample.cafekiosk.api.controller.order.request.OrderCreateRequest;
 import sample.cafekiosk.api.service.order.response.OrderResponse;
 
 import java.time.LocalDateTime;
+
+import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @RestController
