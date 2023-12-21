@@ -1,9 +1,11 @@
 package sample.cafekiosk.domain.product;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import sample.cafekiosk.domain.product.ProductType.ProductSellingStatus;
 import sample.cafekiosk.domain.product.ProductType.ProductType;
@@ -15,12 +17,19 @@ import static sample.cafekiosk.domain.product.ProductType.ProductSellingStatus.*
 import static sample.cafekiosk.domain.product.ProductType.ProductType.*;
 
 @ActiveProfiles("test")
-//@SpringBootTest
-@DataJpaTest
+@SpringBootTest
 class ProductRepositoryTest {
 
     @Autowired
     private ProductRepository productRepository;
+
+
+
+    @AfterEach
+    void tearDown() {
+        productRepository.deleteAllInBatch();
+    }
+
 
     @DisplayName("원하는 판매상품을 조회한다")
     @Test

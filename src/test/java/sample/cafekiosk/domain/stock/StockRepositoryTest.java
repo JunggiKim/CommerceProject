@@ -19,7 +19,6 @@ import static sample.cafekiosk.domain.product.ProductType.ProductType.HANDMADE;
 class StockRepositoryTest {
 
     @Autowired
-
     private StockRepository stockRepository;
 
 

@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
 class StockTest {
@@ -41,20 +42,16 @@ class StockTest {
         assertThat(stock.getQuantity()).isZero();
     }
 
-    @DisplayName("재고 보다 많은 수의 수량으로 차감되는 겨웅 예외가 발생한다.")
+    @DisplayName("재고 보다 많은 수의 수량으로 차감되는 경우 예외가 발생한다.")
     @Test
     void deductQuantity2() throws IllegalAccessException {
         //  given
         Stock stock = Stock.create("001", 1);
         int quantity = 2;
 
-        //  when
-        stock.deductQuantity(quantity);
-
-        //  then
-
+        //  then when
         assertThatThrownBy(() -> stock.deductQuantity(quantity))
-                .isInstanceOf(IllegalAccessError.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("차감할 재고 수량이 없습니다.");
     }
 

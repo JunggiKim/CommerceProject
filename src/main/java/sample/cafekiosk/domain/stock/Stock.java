@@ -50,7 +50,7 @@ public static Stock create(String productNumber,int quantity){
 
     public void deductQuantity(int quantity) throws IllegalAccessException {
             if(isQuantityLessThan(quantity)){
-                throw new IllegalAccessException("차감할 재고 수량이 없습니다.");
+                throw new IllegalArgumentException("차감할 재고 수량이 없습니다.");
             }
         this.quantity -= quantity;
     }
