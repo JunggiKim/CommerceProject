@@ -1,26 +1,48 @@
 spring:
   profiles:
-    default: local
-
+    group:
+       local: dev
+       test: test
+    default: dev
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
   datasource:
     url: jdbc:mariadb://:3306/commerce
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: 1234
 
-  jpa:
-    hibernate:
-      ddl-auto: none
+    jpa:
+        hibernate:
+          ddl-auto: validate
+        show-sql: true
+        properties:
+          hibernate:
+            format_sql: true
+        defer-datasource-initialization: true # (2.5~) Hibernate ??? ?? data.sql ??
 
+    h2:
+        console:
+          enabled: true
 ---
 spring:
   config:
     activate:
-      on-profile: local
-
+      on-profile: test
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:~/test
+    username: sa
+    password:
+    hikari:
+      connection-timeout: 300000
+      maximum-pool-size: 20
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     show-sql: true
     properties:
       hibernate:
@@ -30,21 +52,6 @@ spring:
   h2:
     console:
       enabled: true
-
----
-spring:
-  config:
-    activate:
-      on-profile: test
-
-  jpa:
-    hibernate:
-      ddl-auto: create
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-
   sql:
     init:
       mode: never

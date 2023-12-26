@@ -8,6 +8,8 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Profile;
+
 import sample.cafekiosk.client.mail.MailSendClient;
 import sample.cafekiosk.domain.history.mail.MailSendHistory;
 import sample.cafekiosk.domain.history.mail.MailSendHistoryRepository;
@@ -32,6 +34,7 @@ import static sample.cafekiosk.domain.product.ProductType.ProductType.HANDMADE;
 
 
 @SpringBootTest
+@Profile("test")
 class OrderStatisticsServiceTest {
 
 

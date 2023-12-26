@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.LockModeType;
+
+import org.springframework.data.jpa.repository.Lock;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -35,7 +38,7 @@ public class Stock extends BaseEntity {
         this.quantity = quantity;
     }
 
-public static Stock create(String productNumber,int quantity){
+    public static Stock create(String productNumber,int quantity){
       return Stock.builder()
               .productNumber(productNumber)
               .quantity(quantity)
@@ -47,6 +50,7 @@ public static Stock create(String productNumber,int quantity){
         return this.quantity < quantity;
 
     }
+
 
     public void deductQuantity(int quantity) throws IllegalAccessException {
             if(isQuantityLessThan(quantity)){

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sample.cafekiosk.api.controller.product.dto.request.ProductCreateRequest;
 import sample.cafekiosk.api.service.product.request.ProductCreateServiceRequest;
+import sample.cafekiosk.api.service.stock.Stockservice;
 import sample.cafekiosk.domain.product.Product;
 import sample.cafekiosk.domain.product.ProductRepository;
 import sample.cafekiosk.api.service.product.response.ProductResponse;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private final ProductRepository productRepository;
+
 
 
     @Transactional
