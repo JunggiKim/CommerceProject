@@ -42,7 +42,7 @@ public class ProductService {
 
         int latesProdectNumberInt = Integer.valueOf(latesProdectNumber);
         int nextProductNumberInt = latesProdectNumberInt + 1;
-        return String.format("%03d", nextProductNumberInt);
+        return String.format("%03d", nextProductNumberInt);  // 상품 번호를 3자리로 포맷팅 하는 부분
     }
 
     public List<ProductResponse> getSellingProducts() {

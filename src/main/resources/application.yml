@@ -4,8 +4,31 @@ spring:
        local: dev
        test: test
     default: dev
+
+
+
 ---
+
+springdoc:
+  packages-to-scan: sample.cafekiosk.api
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    disable-swagger-default-url: true
+    display-request-duration: true
+    operations-sorter: alpha
+    path: /swagger-ui
+  api-docs:
+    path: /api-docs
+
+#server:
+#  forward-headers-strategy: framework
+
+
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   config:
     activate:
       on-profile: dev
@@ -29,6 +52,11 @@ spring:
           enabled: true
 ---
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
   config:
     activate:
       on-profile: test
@@ -42,7 +70,7 @@ spring:
       maximum-pool-size: 20
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate:
@@ -50,8 +78,7 @@ spring:
     defer-datasource-initialization: true # (2.5~) Hibernate ??? ?? data.sql ??
 
   h2:
-    console:
-      enabled: true
+    console: "h2/console"
   sql:
     init:
       mode: never

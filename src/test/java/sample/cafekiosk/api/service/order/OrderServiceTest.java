@@ -28,7 +28,7 @@ import static sample.cafekiosk.domain.product.ProductType.ProductSellingStatus.*
 import static sample.cafekiosk.domain.product.ProductType.ProductType.*;
 
 @ActiveProfiles("test")
-//@Transactional
+@Transactional
 @SpringBootTest
 class OrderServiceTest {
 

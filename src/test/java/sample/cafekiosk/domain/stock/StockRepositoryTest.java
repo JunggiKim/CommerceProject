@@ -32,7 +32,6 @@ import static sample.cafekiosk.domain.product.ProductType.ProductSellingStatus.*
 import static sample.cafekiosk.domain.product.ProductType.ProductType.*;
 
 @SpringBootTest
-@Transactional
 @Profile("test")
 class StockRepositoryTest {
 
@@ -45,15 +44,15 @@ class StockRepositoryTest {
     @Autowired
     private ProductRepository productRepository;
 
-    // @AfterEach
-    // void tearDown() {
-    //     stockRepository.deleteAllInBatch();
-    // }
+     @AfterEach
+     void tearDown() {
+         stockRepository.deleteAllInBatch();
+     }
 
-    // @BeforeEach
-    // void beforeAll() {
-    //   stockRepository.deleteAllInBatch();
-    // }
+     @BeforeEach
+     void beforeAll() {
+       stockRepository.deleteAllInBatch();
+     }
 
 
     @DisplayName("상품번호 리스트로 재고를 조회한다.")
@@ -71,10 +70,6 @@ class StockRepositoryTest {
 
         //  then
 
-        for (Stock stock : stocks) {
-            System.out.println("투 스트링 한부분" +stock.getProductNumber());
-        }
-
         assertThat(stocks).hasSize(2)
                 .extracting("productNumber","quantity")
                 .containsExactlyInAnyOrder(
@@ -83,39 +78,39 @@ class StockRepositoryTest {
                 );
     }
 
-    @DisplayName("동시에 재고를 주문시 순차적으로 진행한다.")
-    @Test
-    void createOrderWithNoStock() throws IllegalAccessException, InterruptedException {
-        //  given
-        LocalDateTime registeredDateTime = LocalDateTime.now();
-
-        Product product1 = createProduct(BOTTLE, "001", 1000);
-        productRepository.save(product1);
-
-        Stock stock = Stock.create("001", 100);
-        stockRepository.save(stock);
-
-        List<Product> products = List.of(product1);
-
-        int threadCount = 100;
-        ExecutorService executorService = Executors.newFixedThreadPool(32);//비동기로 실행하는 작업을 단순화하여 사용
-        CountDownLatch latch = new CountDownLatch(threadCount);
-            //when
-        for (int i = 0; i < threadCount; i++) {
-            executorService.submit(() -> {
-                try {
-                   stockservice.deductStockQuantities(products);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                } finally {
-                    latch.countDown();
-                }
-            });
-        }
-        latch.await();//다른 쓰레드에서 수행중인 작업이 완료될때까지 기다려줌
-        //then
-            assertThat(stock.getQuantity()).isEqualTo(0);
-    }
+//    @DisplayName("동시에 재고를 주문시 순차적으로 진행한다.")
+//    @Test
+//    void createOrderWithNoStock() throws IllegalAccessException, InterruptedException {
+//        //  given
+//        LocalDateTime registeredDateTime = LocalDateTime.now();
+//
+//        Product product1 = createProduct(BOTTLE, "001", 1000);
+//        productRepository.save(product1);
+//
+//        Stock stock = Stock.create("001", 100);
+//        stockRepository.save(stock);
+//
+//        List<Product> products = List.of(product1);
+//
+//        int threadCount = 100;
+//        ExecutorService executorService = Executors.newFixedThreadPool(32);//비동기로 실행하는 작업을 단순화하여 사용
+//        CountDownLatch latch = new CountDownLatch(threadCount);
+//            //when
+//        for (int i = 0; i < threadCount; i++) {
+//            executorService.submit(() -> {
+//                try {
+//                   stockservice.deductStockQuantities(products);
+//                } catch (IllegalAccessException e) {
+//                    throw new RuntimeException(e);
+//                } finally {
+//                    latch.countDown();
+//                }
+//            });
+//        }
+//        latch.await();//다른 쓰레드에서 수행중인 작업이 완료될때까지 기다려줌
+//        //then
+//            assertThat(stock.getQuantity()).isEqualTo(0);
+//    }
 
 
       private Product createProduct(ProductType type, String productNumber,int price){

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import sample.cafekiosk.domain.stock.StockRepository;
 @Transactional(isolation = Isolation.SERIALIZABLE)
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class Stockservice {
 
   private final	StockRepository stockRepository;
@@ -32,7 +34,7 @@ public class Stockservice {
 
         //재고 엔티티 조회
         Map<String, Stock> stockMap = createStockMapBy(stockProductNumbers);
-        System.out.println("이후  " +stockMap.toString());
+        log.info("이후 = {} " , stockMap.toString());
 
         //상품별 counting
         Map<String, Long> productCountingMap = createCuntingMapBy(stockProductNumbers);
@@ -51,7 +53,7 @@ public class Stockservice {
 
 
 	private static Map<String, Long> createCuntingMapBy(List<String> stockProductNumbers) {
-        System.out.println("이전  "+ stockProductNumbers.toString());
+        log.info("이전  = {}", stockProductNumbers.toString());
         return stockProductNumbers.stream()
                 .collect(Collectors.groupingBy(productNumber -> productNumber, Collectors.counting()));
 

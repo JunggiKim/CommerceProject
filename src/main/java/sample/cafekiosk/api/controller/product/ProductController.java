@@ -18,15 +18,17 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-public class ProductController {
+public class ProductController implements ProductControllerInterface{
 
     private final ProductService productService;
 
+    @Override
     @PostMapping("/api/v1/products/new")
     public ApiResponse<ProductResponse> createProduct(@Valid @RequestBody ProductCreateRequest request){
         return ApiResponse.ok(productService.createProduct(request.toServiceRequest()));
     }
 
+    @Override
     @GetMapping("/api/v1/products/selling")
     public ApiResponse<List<ProductResponse>> getSellingProducts(){
         return ApiResponse.ok(productService.getSellingProducts());

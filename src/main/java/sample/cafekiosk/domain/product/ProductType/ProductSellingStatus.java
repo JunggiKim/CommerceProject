@@ -18,6 +18,8 @@ public enum ProductSellingStatus {
 
     private  final String text;
 
+
+    // 디스플레이에는 판매 중이거나 판매 보류중인 상푸만 보여야 한다.
     public static List<ProductSellingStatus> forDisplay(){
         return List.of(SELLING,HOLD);
     }

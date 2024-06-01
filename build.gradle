@@ -19,18 +19,24 @@ configurations {
 
 repositories {
     mavenCentral()
+//    maven { url 'https://jitpack.io' }
+
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.2.0'
+    implementation("org.springdoc:springdoc-openapi-ui:1.6.11")
+
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
+    implementation 'com.h2database:h2:1.4.200'
     annotationProcessor 'org.projectlombok:lombok'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
-    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.2.0'
+//    testImplementation 'com.github.banlife:no-transactional:preRelease-5'
 
 
 }
@@ -41,4 +47,6 @@ tasks.named('bootBuildImage') {
 
 tasks.named('test') {
     useJUnitPlatform()
+//    systemProperty("junit.jupiter.extensions.autodetection.enabled", true)
+
 }

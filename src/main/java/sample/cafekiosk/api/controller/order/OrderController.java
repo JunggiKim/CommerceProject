@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import sample.cafekiosk.api.ApiResponse;
+import sample.cafekiosk.api.controller.OrderControllerInterface;
 import sample.cafekiosk.api.service.order.OrderService;
 import sample.cafekiosk.api.controller.order.request.OrderCreateRequest;
 import sample.cafekiosk.api.service.order.response.OrderResponse;
@@ -16,10 +17,11 @@ import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @RestController
-public class OrderController {
+public class OrderController implements OrderControllerInterface {
 
     private final OrderService orderService;
 
+    @Override
     @PostMapping("/api/v1/orders/new")
     public ApiResponse<OrderResponse> createOrder(@Valid @RequestBody OrderCreateRequest request) throws Exception {
         LocalDateTime registeredDateTime = LocalDateTime.now();

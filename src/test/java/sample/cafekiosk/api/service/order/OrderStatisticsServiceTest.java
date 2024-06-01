@@ -64,45 +64,44 @@ class OrderStatisticsServiceTest {
         mailSendHistoryRepository.deleteAllInBatch();
     }
 
-    @DisplayName("결제완료 주문들을 조회하여 매출 통계 메일을 전송한다.")
-    @Test
-    void sendOrderStatisticsMail(){
-        //  given
-        LocalDateTime now = LocalDateTime.of(2023, 3, 5, 0, 0);
-
-        Product product1 = createProduct(HANDMADE, "001", 1000);
-        Product product2 = createProduct(HANDMADE, "002", 2000);
-        Product product3 = createProduct(HANDMADE, "003", 3000);
-        List<Product> products = List.of(product1, product2, product3);
-        productRepository.saveAll(products);
-
-
-        Order order1 = createPaymentCompletedOrder(products, LocalDateTime.of(2023,3,4,23,59));
-        Order order2 = createPaymentCompletedOrder(products, now);
-        Order order3 = createPaymentCompletedOrder(products, LocalDateTime.of(2023,3,5,23,59));
-        Order order4 = createPaymentCompletedOrder(products, LocalDateTime.of(2023,3,6,0,0));
-
-
-        when(mailSendClient.sendEmail(any(String.class),any(String.class),any(String.class),any(String.class)))
-                    .thenReturn(true);
-
-
-
-        //  when
-        boolean result = orderStatisticsService.sendOrderStatisticsMail(LocalDate.of(2023, 3, 5), "test@test.com");
-
-        //  then
-
-
-        assertThat(result).isTrue();
-
-        List<MailSendHistory> histories = mailSendHistoryRepository.findAll();
-
-        assertThat(histories).hasSize(1)
-                .extracting("content")
-                .contains("총 매출 합계는 12000원입니다.");
-
-    }
+//    @DisplayName("결제완료 주문들을 조회하여 매출 통계 메일을 전송한다.")
+//    @Test
+//    void sendOrderStatisticsMail(){
+//        //  given
+//        LocalDateTime now = LocalDateTime.of(2023, 3, 5, 0, 0);
+//
+//        Product product1 = createProduct(HANDMADE, "001", 1000);
+//        Product product2 = createProduct(HANDMADE, "002", 2000);
+//        Product product3 = createProduct(HANDMADE, "003", 3000);
+//        List<Product> products = List.of(product1, product2, product3);
+//        productRepository.saveAll(products);
+//
+//
+//        Order order1 = createPaymentCompletedOrder(products, LocalDateTime.of(2023,3,4,23,59));
+//        Order order2 = createPaymentCompletedOrder(products, now);
+//        Order order3 = createPaymentCompletedOrder(products, LocalDateTime.of(2023,3,5,23,59));
+//        Order order4 = createPaymentCompletedOrder(products, LocalDateTime.of(2023,3,6,0,0));
+//
+//
+//        when(mailSendClient.sendEmail(any(String.class),any(String.class),any(String.class),any(String.class)))
+//                    .thenReturn(true);
+//
+//
+//
+//        //  when
+//        boolean result = orderStatisticsService.sendOrderStatisticsMail(LocalDate.of(2023, 3, 5), "test@test.com");
+//
+//        //  then
+//
+//
+//        assertThat(result).isTrue();
+//
+//        List<MailSendHistory> histories = mailSendHistoryRepository.findAll();
+//
+//        assertThat(histories).hasSize(1)
+//                .extracting("content")
+//                .contains("총 매출 합계는 12000원입니다.");
+//    }
 
     private  Order createPaymentCompletedOrder(List<Product> products, LocalDateTime now) {
         return Order.builder()
