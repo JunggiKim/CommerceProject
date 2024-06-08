@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import sample.cafekiosk.api.ApiResponse;
+import sample.cafekiosk.api.CustomApiResponse;
 
 
 @RestControllerAdvice
@@ -17,8 +17,8 @@ public class ApiControllerAdvice {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BindException.class)
-    public ApiResponse<Object> bindExcertion(BindException e){
-        return ApiResponse.of(
+    public CustomApiResponse<Object> bindExcertion(BindException e){
+        return CustomApiResponse.of(
                 HttpStatus.BAD_REQUEST,
                 e.getBindingResult().getAllErrors().get(0).getDefaultMessage(),
             null);

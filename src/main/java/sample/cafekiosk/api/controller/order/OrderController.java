@@ -5,8 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import sample.cafekiosk.api.ApiResponse;
-import sample.cafekiosk.api.controller.OrderControllerInterface;
+import sample.cafekiosk.api.CustomApiResponse;
 import sample.cafekiosk.api.service.order.OrderService;
 import sample.cafekiosk.api.controller.order.request.OrderCreateRequest;
 import sample.cafekiosk.api.service.order.response.OrderResponse;
@@ -23,9 +22,9 @@ public class OrderController implements OrderControllerInterface {
 
     @Override
     @PostMapping("/api/v1/orders/new")
-    public ApiResponse<OrderResponse> createOrder(@Valid @RequestBody OrderCreateRequest request) throws Exception {
+    public CustomApiResponse<OrderResponse> createOrder(@Valid @RequestBody OrderCreateRequest request) throws Exception {
         LocalDateTime registeredDateTime = LocalDateTime.now();
-        return ApiResponse.ok(orderService.createOrder(request.toServiceRequest(), registeredDateTime));
+        return CustomApiResponse.ok(orderService.createOrder(request.toServiceRequest(), registeredDateTime));
     }
 
 

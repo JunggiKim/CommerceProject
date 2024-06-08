@@ -5,7 +5,7 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import sample.cafekiosk.api.service.product.response.ProductResponse;
 @Getter
-public class ApiResponse<T> {
+public class CustomApiResponse<T> {
 
     private int code;
     private HttpStatus status;
@@ -15,7 +15,7 @@ public class ApiResponse<T> {
 
     private T data;
 
-    public ApiResponse(HttpStatus httpStatus, String message ,T data) {
+    public CustomApiResponse(HttpStatus httpStatus, String message ,T data) {
         this.code = httpStatus.value();
         this.status = httpStatus;
         this.message = message;
@@ -23,17 +23,17 @@ public class ApiResponse<T> {
     }
 
 
-    public static <T> ApiResponse<T> of(HttpStatus httpStatus,String message, T data) {
-        return new ApiResponse<>(httpStatus, message ,data);
+    public static <T> CustomApiResponse<T> of(HttpStatus httpStatus,String message, T data) {
+        return new CustomApiResponse<>(httpStatus, message ,data);
     }
 
 
 
-    public static <T> ApiResponse<T> of(HttpStatus httpStatus, T data) {
-    return new ApiResponse<>(httpStatus, httpStatus.name(),data);
+    public static <T> CustomApiResponse<T> of(HttpStatus httpStatus, T data) {
+    return new CustomApiResponse<>(httpStatus, httpStatus.name(),data);
     }
 
-    public static <T> ApiResponse<T> ok(T data) {
+    public static <T> CustomApiResponse<T> ok(T data) {
         return of(HttpStatus.OK, data);
     }
 

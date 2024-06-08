@@ -34,7 +34,7 @@ public class Stockservice {
 
         //재고 엔티티 조회
         Map<String, Stock> stockMap = createStockMapBy(stockProductNumbers);
-        log.info("이후 = {} " , stockMap.toString());
+        log.info("이후 재고 = {} " , stockMap.toString());
 
         //상품별 counting
         Map<String, Long> productCountingMap = createCuntingMapBy(stockProductNumbers);
@@ -53,7 +53,7 @@ public class Stockservice {
 
 
 	private static Map<String, Long> createCuntingMapBy(List<String> stockProductNumbers) {
-        log.info("이전  = {}", stockProductNumbers.toString());
+        log.info("이전  재고 = {}", stockProductNumbers.toString());
         return stockProductNumbers.stream()
                 .collect(Collectors.groupingBy(productNumber -> productNumber, Collectors.counting()));
 
