@@ -23,7 +23,7 @@ public class OrderResponse {
 
     private List<ProductResponse> products;
 
-
+    private String userEmail;
     @Builder
     public OrderResponse(Long id, int totalPrice, LocalDateTime registeredDateTime, List<ProductResponse> products) {
         this.id = id;

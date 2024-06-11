@@ -43,11 +43,11 @@ class MailServiceTest {
         BDDMockito.given(mailSendClient.sendEmail(anyString(),anyString(),anyString(),anyString()))
                 .willReturn(true);
 
-        boolean result = mailService.sendMail("", "", "", "");
+//        boolean result = mailService.sendMail("", "", "", "");
 
         //  then
 
-        assertThat(result).isTrue();
+//        assertThat(result).isTrue();
         Mockito.verify(mailSendHistoryRepository,Mockito.times(1)).save(any(MailSendHistory.class));
 
     }

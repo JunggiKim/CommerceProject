@@ -1,9 +1,11 @@
 package sample.cafekiosk.api.service.order;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sample.cafekiosk.api.controller.order.request.OrderCreateRequest;
+import sample.cafekiosk.api.service.mail.OrderCreateMailEvent;
 import sample.cafekiosk.api.service.order.request.OrderCreateServiceRequest;
 import sample.cafekiosk.api.service.order.response.OrderResponse;
 import sample.cafekiosk.api.service.stock.Stockservice;
@@ -34,7 +36,9 @@ public class OrderService {
     private final StockRepository stockRepository;
 
     private final Stockservice stockservice;
-/*
+
+    private final ApplicationEventPublisher applicationEventPublisher;
+    /*
 */
     @Transactional
     public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) throws IllegalAccessException {
@@ -45,7 +49,11 @@ public class OrderService {
 
         Order order = Order.create(products, registeredDateTime);
         Order savedOrder = orderRepository.save(order);
-        return OrderResponse.of(savedOrder);
+        OrderResponse orderResponse = OrderResponse.of(savedOrder);
+
+        applicationEventPublisher.publishEvent(new OrderCreateMailEvent(orderResponse));
+
+        return  orderResponse;
     }
 
     private List<Product> findProductsBy(List<String> productNumbers) {

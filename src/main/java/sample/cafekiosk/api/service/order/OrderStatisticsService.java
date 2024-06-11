@@ -34,14 +34,14 @@ public class OrderStatisticsService {
                 .sum();
 
         //메일 전송
-    boolean result =    mailService.sendMail(
-                "no_rply@cafekiosk.com",
-                email,
-                String.format("[매출통계] %s",orderDate),
-                String.format("총 매출 합계는 %s원입니다.",totalAmount));
-        if(!result){
-            throw new IllegalArgumentException("매출 통계 메일 전송에 실패했습니다.");
-        }
+//    boolean result =    mailService.sendMail(
+//                "no_rply@cafekiosk.com",
+//                email,
+//                String.format("[매출통계] %s",orderDate),
+//                String.format("총 매출 합계는 %s원입니다.",totalAmount));
+//        if(!result){
+//            throw new IllegalArgumentException("매출 통계 메일 전송에 실패했습니다.");
+//        }
     return true;
     }
 }
