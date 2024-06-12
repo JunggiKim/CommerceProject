@@ -6,7 +6,8 @@ Content-Type: application/json
   "productNumbers": [
     "001",
     "002"
-  ]
+  ],
+   "userEmail": "k42ke@naver.com"
 }
 
 ###
