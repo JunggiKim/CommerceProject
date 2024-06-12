@@ -25,11 +25,12 @@ public class OrderResponse {
 
     private String userEmail;
     @Builder
-    public OrderResponse(Long id, int totalPrice, LocalDateTime registeredDateTime, List<ProductResponse> products) {
+    public OrderResponse(String userEmail,Long id, int totalPrice, LocalDateTime registeredDateTime, List<ProductResponse> products) {
         this.id = id;
         this.totalPrice = totalPrice;
         this.registeredDateTime = registeredDateTime;
         this.products = products;
+        this.userEmail = userEmail;
     }
 
     public static OrderResponse of(Order order) {
@@ -41,6 +42,7 @@ public class OrderResponse {
                         .map(orderProduct -> ProductResponse.of(orderProduct.getProduct()))
                         .collect(Collectors.toList())
                 )
+                .userEmail(order.getUserEmail())
                 .build();
     }
 }

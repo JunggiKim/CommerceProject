@@ -41,20 +41,32 @@ public class Order extends BaseEntity {
 
     private LocalDateTime registeredDateTime;
 
+    private String userEmail;
+
 
     @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
     @Builder
-    private Order(List<Product> products, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
+    private Order(String userEmail  ,List<Product> products, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
         this.orderStatus = orderStatus;
         this.totalPrice = calculateTotalPrice(products);
         this.registeredDateTime = registeredDateTime;
         this.orderProducts = products.stream()
                 .map( product -> new OrderProduct(this , product))
                 .collect(Collectors.toList());
+        this.userEmail = userEmail;
     }
 
+
+    public static Order create(List<Product>  products,LocalDateTime registeredDateTime,String userEmail) {
+    return Order.builder()
+            .orderStatus(OrderStatus.INIT)
+            .products(products)
+            .registeredDateTime(registeredDateTime)
+            .userEmail( userEmail)
+            .build();
+    }
 
     public static Order create(List<Product>  products,LocalDateTime registeredDateTime) {
     return Order.builder()
