@@ -1,22 +1,13 @@
 package sample.cafekiosk.api.service.stock;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 
 import sample.cafekiosk.domain.product.Product;
 import sample.cafekiosk.domain.product.ProductRepository;
 import sample.cafekiosk.domain.stock.Stock;
 import sample.cafekiosk.domain.stock.StockRepository;
+import sample.cafekiosk.stock.service.Stockservice;
 
 @SpringBootTest
 class StockserviceTest {

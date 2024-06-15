@@ -1,18 +1,18 @@
 package sample.cafekiosk.api.service.product;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import sample.cafekiosk.api.controller.product.dto.request.ProductCreateRequest;
-import sample.cafekiosk.api.service.product.response.ProductResponse;
+import sample.cafekiosk.product.request.ProductCreateRequest;
+import sample.cafekiosk.product.response.ProductResponse;
 import sample.cafekiosk.domain.product.Product;
 import sample.cafekiosk.domain.product.ProductRepository;
 import sample.cafekiosk.domain.product.ProductType.ProductSellingStatus;
 import sample.cafekiosk.domain.product.ProductType.ProductType;
+import sample.cafekiosk.product.service.ProductService;
 
 import java.util.List;
 

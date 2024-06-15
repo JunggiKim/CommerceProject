@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import sample.cafekiosk.api.controller.order.request.OrderCreateRequest;
-import sample.cafekiosk.api.controller.product.dto.request.ProductCreateRequest;
-import sample.cafekiosk.api.service.order.OrderService;
+
+import sample.cafekiosk.order.controller.OrderController;
+import sample.cafekiosk.order.request.OrderCreateRequest;
+import sample.cafekiosk.order.service.OrderService;
 import sample.cafekiosk.domain.product.ProductType.ProductSellingStatus;
 import sample.cafekiosk.domain.product.ProductType.ProductType;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

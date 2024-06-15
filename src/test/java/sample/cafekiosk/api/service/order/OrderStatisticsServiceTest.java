@@ -1,10 +1,6 @@
 package sample.cafekiosk.api.service.order;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -20,15 +16,12 @@ import sample.cafekiosk.domain.orderproduct.OrderProductRepository;
 import sample.cafekiosk.domain.product.Product;
 import sample.cafekiosk.domain.product.ProductRepository;
 import sample.cafekiosk.domain.product.ProductType.ProductType;
+import sample.cafekiosk.order.service.OrderStatisticsService;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 import static sample.cafekiosk.domain.product.ProductType.ProductSellingStatus.*;
 import static sample.cafekiosk.domain.product.ProductType.ProductType.HANDMADE;
 

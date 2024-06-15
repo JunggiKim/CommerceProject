@@ -1,18 +1,17 @@
 package sample.cafekiosk.api.service.mail;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
+
 import sample.cafekiosk.client.mail.MailSendClient;
 import sample.cafekiosk.domain.history.mail.MailSendHistory;
 import sample.cafekiosk.domain.history.mail.MailSendHistoryRepository;
+import sample.cafekiosk.history.mail.mail.MailService;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 

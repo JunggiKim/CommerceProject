@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
-import sample.cafekiosk.api.controller.order.request.OrderCreateRequest;
-import sample.cafekiosk.api.service.order.response.OrderResponse;
+
+import sample.cafekiosk.order.service.OrderService;
+import sample.cafekiosk.order.request.OrderCreateRequest;
+import sample.cafekiosk.order.response.OrderResponse;
 import sample.cafekiosk.domain.order.OrderRepository;
 import sample.cafekiosk.domain.orderproduct.OrderProductRepository;
 import sample.cafekiosk.domain.product.Product;
@@ -19,9 +21,6 @@ import sample.cafekiosk.domain.stock.StockRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static org.assertj.core.api.Assertions.*;
 import static sample.cafekiosk.domain.product.ProductType.ProductSellingStatus.*;

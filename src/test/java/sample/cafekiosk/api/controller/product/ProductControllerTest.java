@@ -1,23 +1,19 @@
 package sample.cafekiosk.api.controller.product;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import sample.cafekiosk.api.controller.product.dto.request.ProductCreateRequest;
-import sample.cafekiosk.api.service.product.ProductService;
-import sample.cafekiosk.api.service.product.response.ProductResponse;
+
+import sample.cafekiosk.product.request.ProductCreateRequest;
+import sample.cafekiosk.product.service.ProductService;
+import sample.cafekiosk.product.response.ProductResponse;
 import sample.cafekiosk.domain.product.ProductType.ProductSellingStatus;
 import sample.cafekiosk.domain.product.ProductType.ProductType;
+import sample.cafekiosk.product.controller.ProductController;
 
 import java.util.List;
 
