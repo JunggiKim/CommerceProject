@@ -11,11 +11,10 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
-import sample.cafekiosk.domain.product.Product;
-import sample.cafekiosk.domain.product.ProductRepository;
-import sample.cafekiosk.domain.product.ProductType.ProductType;
-import sample.cafekiosk.domain.stock.Stock;
-import sample.cafekiosk.domain.stock.StockRepository;
+import sample.cafekiosk.product.Product;
+import sample.cafekiosk.product.ProductRepository;
+import sample.cafekiosk.stock.Stock;
+import sample.cafekiosk.stock.StockRepository;
 
 @Transactional(isolation = Isolation.SERIALIZABLE)
 @Service
@@ -23,7 +22,7 @@ import sample.cafekiosk.domain.stock.StockRepository;
 @Slf4j
 public class Stockservice {
 
-  private final	StockRepository stockRepository;
+  private final StockRepository stockRepository;
 
   private final ProductRepository productRepository;
 

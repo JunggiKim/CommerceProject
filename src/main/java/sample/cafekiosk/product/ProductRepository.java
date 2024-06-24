@@ -3,10 +3,10 @@ package sample.cafekiosk.product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import sample.cafekiosk.domain.product.Product;
-import sample.cafekiosk.domain.product.ProductType.ProductSellingStatus;
 
 import java.util.List;
+
+import sample.cafekiosk.product.ProductType.ProductSellingStatus;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {

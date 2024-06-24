@@ -10,5 +10,4 @@ public record MailRequest(
     String text
 ) {
 
-
 }

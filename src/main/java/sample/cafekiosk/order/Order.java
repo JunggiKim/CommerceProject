@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import sample.cafekiosk.BaseEntity;
+import sample.cafekiosk.orderproduct.OrderProduct;
+import sample.cafekiosk.product.Product;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

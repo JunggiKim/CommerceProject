@@ -9,7 +9,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import sample.cafekiosk.domain.BaseEntity;
+import sample.cafekiosk.BaseEntity;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,7 +30,7 @@ public class MailSendHistory extends BaseEntity {
 
 
     @Builder
-    public MailSendHistory(Long id, String fromEmial, String toEmail, String subject, String content) {
+    private MailSendHistory(Long id, String fromEmial, String toEmail, String subject, String content) {
         this.id = id;
         this.fromEmial = fromEmial;
         this.toEmail = toEmail;
@@ -39,7 +39,9 @@ public class MailSendHistory extends BaseEntity {
     }
 
 
-
+    public MailSendHistory of (String fromEmial, String toEmail, String subject, String content) {
+        MailSendHistory.builder().
+    }
 
 
 }

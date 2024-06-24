@@ -19,6 +19,7 @@ import sample.cafekiosk.product.Product;
 @Getter
 @Entity
 @NoArgsConstructor(access =  AccessLevel.PROTECTED)
+@Builder
 public class OrderProduct extends BaseEntity {
 
 
@@ -36,14 +37,12 @@ public class OrderProduct extends BaseEntity {
 
 
 
-    @Builder
     private OrderProduct(Long id, Order order, Product product) {
         this.id = id;
         this.order = order;
         this.product = product;
     }
 
-    @Builder
     private OrderProduct(Order order, Product product) {
         this.order = order;
         this.product =product;
